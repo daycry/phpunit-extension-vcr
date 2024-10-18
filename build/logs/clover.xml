@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1729260412">
-  <project timestamp="1729260412">
+<coverage generated="1729261330">
+  <project timestamp="1729261330">
     <package name="Daycry\PHPUnit\Vcr\Attributes">
       <file name="C:\Users\46066917X\Documents\GitHub\phpunit-extension-vcr\src\Attributes\UseCassette.php">
         <class name="Daycry\PHPUnit\Vcr\Attributes\UseCassette" namespace="Daycry\PHPUnit\Vcr\Attributes">

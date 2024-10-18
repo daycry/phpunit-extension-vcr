@@ -8,6 +8,9 @@ use PHPUnit\Event\TestRunner\ExecutionStarted;
 use PHPUnit\Event\TestRunner\ExecutionStartedSubscriber;
 use VCR\VCR;
 
+/**
+ * @codeCoverageIgnore
+ */
 class Configuration implements ExecutionStartedSubscriber
 {
     /**
