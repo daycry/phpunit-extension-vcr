@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace  Daycry\PHPUnit\Vcr\Attributes;
+namespace Daycry\PHPUnit\Vcr\Attributes;
 
 use Attribute;
 

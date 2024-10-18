@@ -40,12 +40,20 @@ trait AttributeResolverTrait
             return null;
         }
 
-        if ($method->getAttributes(UseCassette::class)) {
-            return $method->getAttributes(UseCassette::class)[0]->newInstance();
-        }else if($class->getAttributes(UseCassette::class)){
-            return $class->getAttributes(UseCassette::class)[0]->newInstance();
-        }else{
+        $attributes = $method->getAttributes(UseCassette::class);
+
+        if ($attributes) {
+            return $attributes[0]->newInstance();
+        } else {
+            $class = $method->getDeclaringClass();
+            $attributes = $class->getAttributes(UseCassette::class);
+
+            if ($attributes) {
+                return $attributes[0]->newInstance();
+            }
+
             return null;
         }
+
     }
 }
