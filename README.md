@@ -1,4 +1,5 @@
 [![CI Tests](https://github.com/daycry/phpunit-extension-vcr/actions/workflows/phpunit.yml/badge.svg?branch=master)](https://github.com/daycry/phpunit-extension-vcr/actions/workflows/phpunit.yml)
+[![Coverage Status](https://coveralls.io/repos/github/daycry/phpunit-extension-vcr/badge.svg?branch=master)](https://coveralls.io/github/daycry/phpunit-extension-vcr?branch=master)
 
 # PHP-VCR integration for PHPUnit
 
