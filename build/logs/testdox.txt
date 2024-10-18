@@ -1,0 +1,13 @@
+Attribute Declared Both On Class And Method (Daycry\PHPUnit\Vcr\Tests\AttributeDeclaredBothOnClassAndMethod)
+ [x] It uses cassette from method when declared on both places
+
+Attribute Declared On Class (Daycry\PHPUnit\Vcr\Tests\AttributeDeclaredOnClass)
+ [x] It uses vcr on methods from class with attribute
+ [x] It uses vcr on methods with data provider with data set #0
+ [x] It uses vcr on methods with data provider with data set #1
+
+Attribute Declared On Methods (Daycry\PHPUnit\Vcr\Tests\AttributeDeclaredOnMethods)
+ [x] It uses vcr on methods with attribute
+ [x] It uses vcr on methods with data provider with data set #0
+ [x] It uses vcr on methods with data provider with data set #1
+

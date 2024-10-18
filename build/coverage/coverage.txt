@@ -1,0 +1,16 @@
+
+
+Code Coverage Report:
+  2024-10-18 14:06:53
+
+ Summary:
+  Classes: 16.67% (1/6)
+  Methods: 27.27% (3/11)
+  Lines:   30.00% (21/70)
+
+Daycry\PHPUnit\Vcr\Attributes\UseCassette
+  Methods: 100.00% ( 1/ 1)   Lines: 100.00% (  1/  1)
+Daycry\PHPUnit\Vcr\Subscribers\StartRecording
+  Methods:   0.00% ( 0/ 1)   Lines:  85.71% (  6/  7)
+Daycry\PHPUnit\Vcr\Traits\AttributeResolverTrait
+  Methods:  66.67% ( 2/ 3)   Lines:  77.78% ( 14/ 18)
