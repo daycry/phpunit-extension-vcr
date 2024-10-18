@@ -1,16 +1,21 @@
-name: CI Tests
+name: PHP unit tests
 
 on:
-  pull_request:
+  schedule:
+    - cron: "0 12 * * *"
   push:
-    branches:
-      - master
-      - v*
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+    
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
 
 jobs:
   tests:
-    runs-on: ubuntu-22.04
-
+    runs-on: ubuntu-latest
+    
     strategy:
       fail-fast: false
       matrix:
@@ -20,39 +25,46 @@ jobs:
           { php: 8.2, phpunit: 11 }, { php: 8.3, phpunit: 11 }
         ]
 
-    name: PHP ${{ matrix.versions.php }} - PHPUnit ${{ matrix.versions.phpunit }}
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v3
 
-      # Docs: https://github.com/shivammathur/setup-php
-      - name: Setup PHP
+      - name: Setup PHP, with composer and extensions
         uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.versions.php }}
           extensions: dom, curl, libxml, mbstring, zip
           ini-values: error_reporting=E_ALL
           tools: composer:v2
-          coverage: none
+          coverage: xdebug
+
+      - name: Get composer cache directory
+        id: composercache
+        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+
+      - name: Cache dependencies
+        uses: actions/cache@v3
+        with:
+          path: ${{ steps.composercache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: ${{ runner.os }}-composer-
 
       - name: Install dependencies
         run: |
           composer require "phpunit/phpunit=^${{ matrix.versions.phpunit }}" --no-update
           composer update --prefer-dist --no-interaction --no-progress --optimize-autoloader
 
-      - name: Run phpunit tests
+      - name: Test with PHPUnit
         run: composer test
-        
+      
       - name: Run Coveralls
-        if: matrix.php == '8.3'
+        if: matrix.versions.php == '8.3'
         run: |
           composer global require --ansi php-coveralls/php-coveralls:^2.7
           php-coveralls --coverage_clover=build/logs/clover.xml -v
         env:
           COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           COVERALLS_PARALLEL: true
-          COVERALLS_FLAG_NAME: PHP ${{ matrix.php-versions }}
+          COVERALLS_FLAG_NAME: PHP ${{ matrix.versions.php }}
   coveralls-finish:
     runs-on: ubuntu-latest
     needs: [tests]
