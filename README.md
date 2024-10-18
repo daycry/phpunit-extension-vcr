@@ -1,8 +1,8 @@
+[![CI Tests](https://github.com/daycry/phpunit-extension-vcr/actions/workflows/phpunit.yml/badge.svg?branch=master)](https://github.com/daycry/phpunit-extension-vcr/actions/workflows/phpunit.yml)
+
 # PHP-VCR integration for PHPUnit
 
 A library that allows you to easily use the PHP-VCR library in your PHPUnit tests.
-
-[![CI Tests](https://github.com/daycry/phpunit-extension-vcr/actions/workflows/phpunit.yml/badge.svg?branch=master)](https://github.com/daycry/phpunit-extension-vcr/actions/workflows/phpunit.yml)
 
 ## Requirements
 
