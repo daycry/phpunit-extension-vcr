@@ -43,3 +43,24 @@ jobs:
 
       - name: Run phpunit tests
         run: composer test
+        
+      - name: Run Coveralls
+        if: matrix.php == '8.3'
+        run: |
+          composer global require --ansi php-coveralls/php-coveralls:^2.7
+          php-coveralls --coverage_clover=build/logs/clover.xml -v
+        env:
+          COVERALLS_REPO_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          COVERALLS_PARALLEL: true
+          COVERALLS_FLAG_NAME: PHP ${{ matrix.php-versions }}
+  coveralls-finish:
+    runs-on: ubuntu-latest
+    needs: [tests]
+
+    steps:
+      - name: Coveralls Finished
+        uses: coverallsapp/github-action@v2
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          parallel-finished: true
+          fail-on-error: false
