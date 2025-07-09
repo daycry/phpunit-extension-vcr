@@ -1,0 +1,15 @@
+parameters:
+    level: 8
+    paths:
+        - src
+        - tests
+    excludePaths:
+        - tests/fixtures
+    reportUnmatchedIgnoredErrors: false
+    ignoreErrors:
+        - '#Call to an undefined method PHPUnit\\Framework\\MockObject\\MockObject::#'
+        - '#Parameter \#1 \$test of method .* expects PHPUnit\\Event\\Code\\Test, .* given#'
+        -
+            identifier: missingType.iterableValue
+        -
+            identifier: missingType.generics

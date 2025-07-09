@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Daycry\PHPUnit\Vcr\Subscribers;
 
-use PHPUnit\Event\Test\FinishedSubscriber;
-use VCR\VCR;
 use Daycry\PHPUnit\Vcr\Traits\AttributeResolverTrait;
 use PHPUnit\Event\Test\Finished;
+use PHPUnit\Event\Test\FinishedSubscriber;
+use VCR\VCR;
 
 class FinishRecording implements FinishedSubscriber
 {

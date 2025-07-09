@@ -19,7 +19,7 @@ class MixedCassetteUsageTest extends TestCase
     {
         // This test intentionally does NOT use a cassette
         // It should not interfere with subsequent tests
-        
+
         $this->assertTrue(true);
     }
 
@@ -29,7 +29,7 @@ class MixedCassetteUsageTest extends TestCase
     {
         // This test uses a cassette and should work correctly
         // even though the previous test didn't use one
-        
+
         $content = file_get_contents("https://example.com");
         $this->assertSame("Example body for \"https://example.com\"", $content);
     }
@@ -47,6 +47,7 @@ class MixedCassetteUsageTest extends TestCase
     {
         // This should also work correctly
         $content = file_get_contents("https://httpbin.org/json");
+        $this->assertIsString($content);
         $this->assertStringContainsString("slideshow", $content);
     }
 }

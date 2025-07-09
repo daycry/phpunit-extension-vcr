@@ -19,6 +19,7 @@
 			<clover outputFile="build/logs/clover.xml"/>
 			<html outputDirectory="build/coverage/html" highLowerBound="80"/>
 			<text outputFile="build/coverage/coverage.txt"/>
+			<xml outputDirectory="build/coverage/xml"/>
 		</report>
 	</coverage>
   <testsuites>
@@ -37,7 +38,7 @@
   <logging>
 		<testdoxHtml outputFile="build/logs/testdox.html"/>
 		<testdoxText outputFile="build/logs/testdox.txt"/>
-		<junit outputFile="build/logs/logfile.xml"/>
+		<junit outputFile="build/coverage/junit.xml"/>
 		<!--<log type="coverage-clover" target="build/logs/clover.xml"/>-->
 	</logging>
 </phpunit>

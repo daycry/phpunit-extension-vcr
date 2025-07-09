@@ -4,8 +4,9 @@ declare(strict_types=1);
 
 namespace Daycry\PHPUnit\Vcr\Subscribers;
 
-use PHPUnit\Event\Test\PreparedSubscriber;
+use Exception;
 use PHPUnit\Event\Test\Prepared;
+use PHPUnit\Event\Test\PreparedSubscriber;
 use VCR\VCR;
 
 /**
@@ -20,14 +21,14 @@ class CleanupState implements PreparedSubscriber
         try {
             // Eject any existing cassette
             VCR::eject();
-        } catch (\Exception) {
+        } catch (Exception) {
             // Ignore if no cassette was inserted
         }
-        
+
         try {
             // Turn off VCR to ensure clean state
             VCR::turnOff();
-        } catch (\Exception) {
+        } catch (Exception) {
             // Ignore if VCR was already off
         }
     }

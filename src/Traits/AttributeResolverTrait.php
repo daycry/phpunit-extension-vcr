@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Daycry\PHPUnit\Vcr\Traits;
 
-use PHPUnit\Event\Code\Test;
-use PHPUnit\Event\Code\TestMethod;
 use Daycry\PHPUnit\Vcr\Attributes\UseCassette;
 use Exception;
-use ReflectionMethod;
+use PHPUnit\Event\Code\Test;
+use PHPUnit\Event\Code\TestMethod;
 use ReflectionClass;
+use ReflectionMethod;
 
 trait AttributeResolverTrait
 {
@@ -28,11 +28,7 @@ trait AttributeResolverTrait
         $reflection = new ReflectionClass($test);
         $class = $reflection->getProperty('className')->getValue($test);
 
-        if ($test instanceof TestMethod) {
-            $method = $test->methodName();
-        } else {
-            $method = $test->name();
-        }
+        $method = $test instanceof TestMethod ? $test->methodName() : $test->name();
 
         try {
             $method = new ReflectionMethod($class, $method);
@@ -42,7 +38,7 @@ trait AttributeResolverTrait
 
         $attributes = $method->getAttributes(UseCassette::class);
 
-        if ($attributes) {
+        if ($attributes !== []) {
             return $attributes[0]->newInstance();
         } else {
             $class = $method->getDeclaringClass();

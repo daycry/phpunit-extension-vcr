@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace Daycry\PHPUnit\Vcr\Subscribers;
 
+use Daycry\PHPUnit\Vcr\Traits\AttributeResolverTrait;
 use PHPUnit\Event\Test\Prepared;
 use PHPUnit\Event\Test\PreparedSubscriber;
 use VCR\VCR;
-use Daycry\PHPUnit\Vcr\Traits\AttributeResolverTrait;
 
 class StartRecording implements PreparedSubscriber
 {
