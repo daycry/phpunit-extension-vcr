@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Daycry\PHPUnit\Vcr;
 
+use Daycry\PHPUnit\Vcr\Subscribers\CleanupState;
 use Daycry\PHPUnit\Vcr\Subscribers\Configuration as ConfigurationSubscriber;
 use Daycry\PHPUnit\Vcr\Subscribers\FinishRecording;
 use Daycry\PHPUnit\Vcr\Subscribers\StartRecording;
@@ -28,6 +29,7 @@ class Extension implements PHPUnit\Extension
             )
         );
 
+        $facade->registerSubscriber(new CleanupState());
         $facade->registerSubscriber(new StartRecording());
         $facade->registerSubscriber(new FinishRecording());
 

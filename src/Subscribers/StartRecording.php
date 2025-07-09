@@ -24,6 +24,7 @@ class StartRecording implements PreparedSubscriber
         $cassetteName = $this->getCassetteName($test);
         assert($cassetteName !== null);
 
+        // VCR should already be clean thanks to CleanupState, but ensure it's off before turning on
         VCR::turnOn();
         VCR::insertCassette($cassetteName);
     }

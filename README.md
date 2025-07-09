@@ -106,3 +106,10 @@ used for that method. In this example, the responses from the requests made in t
         public function recorded(): void { ... }
     }
     ```
+
+## Features
+
+* **Automatic State Management**: The library automatically handles VCR state cleanup between tests, ensuring that tests without cassettes don't interfere with tests that use cassettes.
+* **Flexible Configuration**: All VCR configuration options are supported through PHPUnit extension parameters.
+* **PHP 8+ Attributes**: Uses modern PHP attributes for clean and readable test declarations.
+* **Mixed Test Support**: Seamlessly handles test suites that mix tests with and without cassettes.
