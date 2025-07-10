@@ -28,7 +28,11 @@
     </testsuite>
   </testsuites>
   <extensions>
-    <bootstrap class="\Daycry\PHPUnit\Vcr\Extension"/>
+    <bootstrap class="\Daycry\PHPUnit\Vcr\Extension">
+      <parameter name="cassettesPath" value="tests/fixtures" />
+      <parameter name="storage" value="yaml" />
+      <parameter name="mode" value="new_episodes" />
+    </bootstrap>
   </extensions>
   <source>
     <include>
