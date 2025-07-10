@@ -25,21 +25,28 @@ class AttributeResolverTraitTest extends TestCase
     }
 
     #[Test]
-    public function needsRecordingMethodExists(): void
+    public function traitProvidesExpectedFunctionality(): void
     {
-        $this->assertTrue(method_exists($this, 'needsRecording'));
-    }
+        // Test that the trait is properly used by checking for expected behavior
+        // rather than just method existence which PHPStan knows is always true
 
-    #[Test]
-    public function getCassetteNameMethodExists(): void
-    {
-        $this->assertTrue(method_exists($this, 'getCassetteName'));
-    }
+        $reflection = new ReflectionClass($this);
+        $traitNames = $reflection->getTraitNames();
 
-    #[Test]
-    public function getAttributeMethodExists(): void
-    {
-        $this->assertTrue(method_exists($this, 'getAttribute'));
+        $this->assertContains(AttributeResolverTrait::class, $traitNames);
+
+        // Verify the trait provides the expected private methods by checking reflection
+        $method = $reflection->getMethod('needsRecording');
+        $this->assertSame('needsRecording', $method->getName());
+        $this->assertTrue($method->isPrivate());
+
+        $method = $reflection->getMethod('getCassetteName');
+        $this->assertSame('getCassetteName', $method->getName());
+        $this->assertTrue($method->isPrivate());
+
+        $method = $reflection->getMethod('getAttribute');
+        $this->assertSame('getAttribute', $method->getName());
+        $this->assertTrue($method->isPrivate());
     }
 }
 
@@ -50,14 +57,16 @@ class ClassWithUseCassetteAttribute extends TestCase
     #[Test]
     public function someTest(): void
     {
-        $this->assertTrue(true);
+        // Dummy test for testing attribute resolution
+        $this->expectNotToPerformAssertions();
     }
 
     #[Test]
     #[UseCassette("method-level.yml")]
     public function testWithMethodAttribute(): void
     {
-        $this->assertTrue(true);
+        // Dummy test with method-level attribute
+        $this->expectNotToPerformAssertions();
     }
 }
 
@@ -66,6 +75,7 @@ class ClassWithoutUseCassetteAttribute extends TestCase
     #[Test]
     public function someTest(): void
     {
-        $this->assertTrue(true);
+        // Dummy test without any cassette attributes
+        $this->expectNotToPerformAssertions();
     }
 }

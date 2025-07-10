@@ -19,8 +19,7 @@ class MixedCassetteUsageTest extends TestCase
     {
         // This test intentionally does NOT use a cassette
         // It should not interfere with subsequent tests
-
-        $this->assertTrue(true);
+        $this->expectNotToPerformAssertions();
     }
 
     #[Test]
@@ -38,7 +37,7 @@ class MixedCassetteUsageTest extends TestCase
     public function testWithoutCassetteAgain(): void
     {
         // Another test without cassette
-        $this->assertTrue(true);
+        $this->expectNotToPerformAssertions();
     }
 
     #[Test]
