@@ -49,7 +49,7 @@ class Extension implements PHPUnit\Extension
     {
         $value = $this->parameter($parameters, $name);
 
-        if ($value === null) {
+        if ($value === null || trim($value) === '') {
             return null;
         }
 
